@@ -33,6 +33,8 @@ func _ready():
 	var zoom_factor = viewport_size.x / target_width
 
 	cam.zoom = Vector2(zoom_factor, zoom_factor)
+	$GameOverLine.y = GAME_OVER_Y
+
 
 
 func _input(event):

@@ -6,6 +6,7 @@ var merged := false
 var merge_cooldown := false
 var can_trigger_game_over := false
 
+const MERGE_EPS := 5
 const RADII := [14, 18, 22, 26, 32, 38, 46, 56, 68, 90]
 const COLORS := [
 	
@@ -91,6 +92,14 @@ func try_merge(other: Ball):
 	if other.size_level != size_level:
 		return
 
+	var r: float = RADII[size_level]
+	var dist := global_position.distance_to(other.global_position)
+
+	# ─── мердж при почти касании ───────────
+	if dist > r * 2.0 + MERGE_EPS:
+		return
+	# ──────────────────────────────────────
+
 	merge_cooldown = true
 	other.merge_cooldown = true
 	merged = true
@@ -99,8 +108,9 @@ func try_merge(other: Ball):
 	_start_delayed_merge(other)
 
 
+
 func _start_delayed_merge(other: Ball) -> void:
-	await get_tree().create_timer(0.02).timeout  # ← вот реальная задержка
+	await get_tree().create_timer(0.01).timeout  # ← вот реальная задержка
 
 	if not is_instance_valid(other):
 		return
@@ -163,6 +173,8 @@ func _make_circle_texture(size: int = 16) -> Texture2D:
 				img.set_pixel(x, y, Color(1, 1, 1))
 	return ImageTexture.create_from_image(img)
 
+#CPU PARTICLES 
+
 func _spawn_merge_particles(pos: Vector2, color: Color):
 	var p := CPUParticles2D.new()
 	p.texture = _make_circle_texture(16)
@@ -186,6 +198,9 @@ func _spawn_merge_particles(pos: Vector2, color: Color):
 	p.finished.connect(func():
 		p.queue_free()
 	)
+
+
+#GPU PARTICLES
 
 # func _spawn_merge_particles(pos: Vector2, color: Color):
 # 	var p := GPUParticles2D.new()
