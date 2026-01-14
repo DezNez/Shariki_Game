@@ -6,7 +6,7 @@ var merged := false
 var merge_cooldown := false
 var can_trigger_game_over := false
 
-const MERGE_EPS := 5
+const MERGE_EPS := 15
 const RADII := [14, 18, 22, 26, 32, 38, 46, 56, 68, 90]
 const COLORS := [
 	
@@ -21,6 +21,7 @@ const COLORS := [
 	Color("#E57373"),
 	Color("#ff7300ff")
 ]
+
 
 func _ready():
 	update_size()
@@ -47,7 +48,7 @@ func _ready():
 
 	# таймер чтобы шарик не триггерил game over сразу
 	var t := Timer.new()
-	t.wait_time = 0.4
+	t.wait_time = 0.5
 	t.one_shot = true
 	t.autostart = true
 	add_child(t)

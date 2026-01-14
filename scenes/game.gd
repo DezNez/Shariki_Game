@@ -102,6 +102,7 @@ func spawn_ball():
 	await get_tree().create_timer(SPAWN_COOLDOWN).timeout
 	can_spawn = true
 
+
 func _update_score_labels():
 	score_label.text = "Score: %d" % score
 	$CanvasLayer/BestLabel.text = "Best: %d" % best_score
@@ -126,8 +127,6 @@ func _load_best_score():
 	var cfg := ConfigFile.new()
 	if cfg.load(SAVE_PATH) == OK:
 		best_score = cfg.get_value("stats", "best_score", 0)
-
-
 
 
 func _on_game_area_mouse_entered():
