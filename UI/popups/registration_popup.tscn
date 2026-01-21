@@ -1,0 +1,90 @@
+[gd_scene load_steps=2 format=3 uid="uid://bopfqgomvlisr"]
+
+[ext_resource type="Script" uid="uid://cc7hypd1ek0j6" path="res://UI/popups/registration_popup.gd" id="1_t25ue"]
+
+[node name="RegistrationPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 38.999996
+offset_top = 243.0
+offset_right = 79.0
+offset_bottom = 283.0
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_t25ue")
+
+[node name="Background" type="ColorRect" parent="."]
+z_index = 10
+layout_mode = 0
+offset_left = -235.7143
+offset_top = -581.4286
+offset_right = 632.8571
+offset_bottom = 787.5714
+color = Color(0.16862746, 0.16862746, 0.16862746, 0.26666668)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -9.999994
+offset_top = -51.42857
+offset_right = 390.0
+offset_bottom = 198.57143
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -129.0
+offset_top = 11.0
+offset_right = 130.0
+offset_bottom = 46.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = "Select your nickname"
+
+[node name="NickInput" type="LineEdit" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -39.0
+offset_right = 160.0
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubmitButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_top = -77.0
+offset_right = 73.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Submit"
+
+[node name="ErrorLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -80.0
+offset_right = 20.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.4464503, 0.13674936, 0.15046227, 1)
+theme_override_font_sizes/font_size = 25
+
+[connection signal="pressed" from="Panel/SubmitButton" to="." method="_on_submit_button_pressed"]

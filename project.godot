@@ -11,15 +11,33 @@ config_version=5
 [application]
 
 config/name="Balls"
-run/main_scene="uid://dyl1u24g3ijwt"
+run/main_scene="uid://ceidv8g3nyysn"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Settings="*res://autoload/settings.gd"
+Supabase="*res://autoload/supabase.gd"
+GlobalLeaderboard="*res://UI/screens/leaderboard.tscn"
 
 [display]
 
 window/size/viewport_width=360
 window/size/viewport_height=640
 window/stretch/mode="canvas_items"
+
+[global_group]
+
+config_popup=""
+
+[gui]
+
+common/default_scroll_deadzone=5
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [physics]
 

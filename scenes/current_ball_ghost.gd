@@ -44,6 +44,6 @@ func _draw():
 	draw_circle(Vector2.ZERO, RADII[size] - 2, col.darkened(0.4), width)
 
 	# прицел
-	if aim_enabled:
+	if Settings.aim_enabled:
 		var y2 = game.game_over_y if "game_over_y" in game else 300
 		draw_line(Vector2.ZERO, Vector2(0, y2 - global_position.y), Color(1,1,1,0.5), 2)

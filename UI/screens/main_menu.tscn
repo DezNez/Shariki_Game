@@ -1,0 +1,264 @@
+[gd_scene load_steps=8 format=3 uid="uid://ceidv8g3nyysn"]
+
+[ext_resource type="Script" uid="uid://omikh7y5xxud" path="res://UI/screens/MainMenu.gd" id="1_iihlf"]
+[ext_resource type="PackedScene" uid="uid://c1w4yduqehcwb" path="res://UI/popups/BasePopup.tscn" id="1_w5p8p"]
+[ext_resource type="PackedScene" uid="uid://bopfqgomvlisr" path="res://UI/popups/registration_popup.tscn" id="2_klc7o"]
+[ext_resource type="FontFile" uid="uid://ccn8nkkjktpb2" path="res://Font/bahnschrift.ttf" id="2_p2iau"]
+[ext_resource type="StyleBox" uid="uid://ux2l8gncw7cq" path="res://scenes/button_blue.tres" id="3_klc7o"]
+[ext_resource type="StyleBox" uid="uid://dhflx8syuyoya" path="res://scenes/button_blue_pressed.tres" id="4_hmp1u"]
+[ext_resource type="StyleBox" uid="uid://dfb68p5x5hl7x" path="res://scenes/focus.tres" id="6_hmp1u"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iihlf")
+registration_scene = ExtResource("2_klc7o")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Buttons" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.5
+offset_top = -124.0
+offset_right = 76.5
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_p2iau")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("3_klc7o")
+theme_override_styles/pressed = ExtResource("4_hmp1u")
+theme_override_styles/hover = ExtResource("3_klc7o")
+theme_override_styles/focus = ExtResource("6_hmp1u")
+text = "Play"
+icon_alignment = 1
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_p2iau")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("3_klc7o")
+theme_override_styles/pressed = ExtResource("4_hmp1u")
+theme_override_styles/hover = ExtResource("3_klc7o")
+theme_override_styles/focus = ExtResource("6_hmp1u")
+text = "Settings"
+icon_alignment = 1
+
+[node name="LeaderboardButton" type="Button" parent="CanvasLayer/Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_p2iau")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("3_klc7o")
+theme_override_styles/pressed = ExtResource("4_hmp1u")
+theme_override_styles/hover = ExtResource("3_klc7o")
+theme_override_styles/focus = ExtResource("6_hmp1u")
+text = "Leaderboard"
+
+[node name="Popups" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ModesPopup" parent="CanvasLayer/Popups" instance=ExtResource("1_w5p8p")]
+visible = false
+layout_mode = 1
+anchor_left = 2.43
+anchor_top = 4.46
+anchor_right = 2.43
+anchor_bottom = 4.46
+offset_left = 59.799995
+offset_top = 134.6
+offset_right = 95.799995
+offset_bottom = 182.6
+
+[node name="Label" type="Label" parent="CanvasLayer/Popups/ModesPopup"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -86.0
+offset_right = 42.0
+offset_bottom = -63.0
+text = "Mode"
+
+[node name="Classic" type="Button" parent="CanvasLayer/Popups/ModesPopup"]
+layout_mode = 0
+offset_left = -94.0
+offset_top = -3.0
+offset_right = -5.0
+offset_bottom = 81.0
+text = "Classic
+PH"
+
+[node name="Bonus" type="Button" parent="CanvasLayer/Popups/ModesPopup"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = -3.0
+offset_right = 137.0
+offset_bottom = 82.0
+text = "Bonus
+PH"
+
+[node name="CloseModes" type="Button" parent="CanvasLayer/Popups/ModesPopup"]
+layout_mode = 0
+offset_left = 88.0
+offset_top = -103.0
+offset_right = 106.0
+offset_bottom = -72.0
+text = "X"
+
+[node name="SettingsPopup" parent="CanvasLayer/Popups" instance=ExtResource("1_w5p8p")]
+visible = false
+layout_mode = 1
+offset_left = 148.0
+offset_top = 353.0
+offset_right = 148.0
+offset_bottom = 353.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Popups/SettingsPopup" groups=["config_popup"]]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.380005
+offset_top = -166.0
+offset_right = 54.619995
+offset_bottom = -135.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_p2iau")
+theme_override_font_sizes/font_size = 30
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sound" type="CheckBox" parent="CanvasLayer/Popups/SettingsPopup" groups=["config_popup"]]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -120.0
+offset_right = 76.0
+offset_bottom = -120.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_p2iau")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = ExtResource("6_hmp1u")
+disabled = true
+text = "Sound"
+
+[node name="Music" type="CheckBox" parent="CanvasLayer/Popups/SettingsPopup" groups=["config_popup"]]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -80.0
+offset_right = 71.0
+offset_bottom = -80.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_p2iau")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = ExtResource("6_hmp1u")
+disabled = true
+text = "Music"
+
+[node name="Vibration" type="CheckBox" parent="CanvasLayer/Popups/SettingsPopup" groups=["config_popup"]]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -40.0
+offset_right = 107.0
+offset_bottom = -40.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_p2iau")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = ExtResource("6_hmp1u")
+text = "Vibration"
+
+[node name="Aim" type="CheckBox" parent="CanvasLayer/Popups/SettingsPopup" groups=["config_popup"]]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_right = 50.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_p2iau")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = ExtResource("6_hmp1u")
+text = "Aim"
+
+[node name="CloseSettings" type="Button" parent="CanvasLayer/Popups/SettingsPopup" groups=["config_popup"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.380005
+offset_top = 52.299988
+offset_right = 24.619995
+offset_bottom = 83.29999
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_p2iau")
+theme_override_font_sizes/font_size = 29
+theme_override_styles/normal = ExtResource("3_klc7o")
+theme_override_styles/pressed = ExtResource("4_hmp1u")
+theme_override_styles/hover = ExtResource("3_klc7o")
+theme_override_styles/focus = ExtResource("6_hmp1u")
+text = "Apply"
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/Popups/SettingsPopup"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.380005
+offset_top = -212.7
+offset_right = 97.619995
+offset_bottom = 111.3
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("3_klc7o")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.64900005
+anchor_top = -0.067
+offset_left = -169.35999
+offset_top = -261.12
+offset_right = 744.0
+offset_bottom = 1081.0
+color = Color(0.14901961, 0.16078432, 0.2, 1)
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="CanvasLayer/Buttons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Buttons/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Buttons/LeaderboardButton" to="." method="_on_leaderboard_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Popups/ModesPopup/Classic" to="." method="_on_classic_pressed"]
+[connection signal="pressed" from="CanvasLayer/Popups/ModesPopup/CloseModes" to="." method="_on_close_modes_pressed"]
+[connection signal="toggled" from="CanvasLayer/Popups/SettingsPopup/Vibration" to="." method="_on_vibration_toggled"]
+[connection signal="toggled" from="CanvasLayer/Popups/SettingsPopup/Aim" to="." method="_on_aim_toggled"]
+[connection signal="pressed" from="CanvasLayer/Popups/SettingsPopup/CloseSettings" to="." method="_on_close_settings_pressed"]

@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://ct5bml3mdpj63"]
+
+[ext_resource type="StyleBox" uid="uid://dhflx8syuyoya" path="res://scenes/button_blue_pressed.tres" id="1_1hl61"]
+[ext_resource type="FontFile" uid="uid://ccn8nkkjktpb2" path="res://Font/bahnschrift.ttf" id="2_gk1jo"]
+[ext_resource type="StyleBox" uid="uid://ux2l8gncw7cq" path="res://scenes/button_blue.tres" id="2_ipnwf"]
+[ext_resource type="Script" uid="uid://bqrsnaplashl0" path="res://UI/screens/leaderboard.gd" id="2_ldfhd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldfhd"]
+bg_color = Color(0.20360488, 0.22710772, 0.35931128, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gk1jo"]
+
+[node name="Leaderboard" type="CanvasLayer"]
+layer = 100
+script = ExtResource("2_ldfhd")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 34.0
+offset_top = 75.0
+offset_right = 332.0
+offset_bottom = 585.0
+theme_override_styles/panel = ExtResource("1_1hl61")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = -234.0
+offset_right = 129.0
+offset_bottom = 237.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ldfhd")
+horizontal_scroll_mode = 0
+
+[node name="List" type="VBoxContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="CloseButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -524.0
+offset_right = 164.0
+offset_bottom = -487.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_gk1jo")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = ExtResource("2_ipnwf")
+theme_override_styles/pressed = ExtResource("1_1hl61")
+theme_override_styles/hover = ExtResource("2_ipnwf")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gk1jo")
+text = "X"
+
+[connection signal="pressed" from="Panel/CloseButton" to="." method="_on_close_button_pressed"]
