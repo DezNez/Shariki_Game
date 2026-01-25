@@ -141,11 +141,10 @@ func _merge_with(other: Ball):
 		return
 
 	if Settings.vibration_enabled:
-		print("DEBUG: Вибрация включена в настройках. Пытаюсь вибрировать...")
 		if OS.has_feature("mobile"):
 			Input.vibrate_handheld(10)
 	else:
-		print("DEBUG: Вибрация ВЫКЛЮЧЕНА. Пропускаю импульс.")
+		pass
 
 	if size_level + 1 >= RADII.size():
 		return
@@ -184,67 +183,67 @@ func _make_circle_texture(size: int = 16) -> Texture2D:
 
 #CPU PARTICLES 
 
-# func _spawn_merge_particles(pos: Vector2, color: Color):
-# 	var p := CPUParticles2D.new()
-# 	p.texture = _make_circle_texture(16)
-# 	p.color = color
-# 	p.global_position = pos
-# 	p.z_index = 0
-# 	p.amount = 128
-# 	p.lifetime = 0.5
-# 	p.one_shot = true
-# 	p.explosiveness = 1.0
-# 	p.emitting = false
-# 	p.direction = Vector2(0, -1)
-# 	p.spread = 180
-# 	p.initial_velocity_min = 60
-# 	p.initial_velocity_max = 140
-# 	p.gravity = Vector2(0, 200)
-# 	p.scale_amount_min = 0.4
-# 	p.scale_amount_max = 0.8
-# 	get_tree().current_scene.add_child(p)
-# 	p.emitting = true
-# 	p.finished.connect(func():
-# 		p.queue_free()
-# 	)
-
-
-# GPU PARTICLES
-
 func _spawn_merge_particles(pos: Vector2, color: Color):
-	var p := GPUParticles2D.new()
-
-	# ─── материал ───────────────────────────
-	var mat := ParticleProcessMaterial.new()
-	mat.color = color
-	mat.direction = Vector3(0, -1, 0)
-	mat.spread = 180.0
-
-	mat.initial_velocity_min = 60.0
-	mat.initial_velocity_max = 140.0
-	mat.gravity = Vector3(0, 200, 0)
-
-	mat.scale_min = 0.4
-	mat.scale_max = 0.8
-
-	p.process_material = mat
-
-	# ─── визуал ─────────────────────────────
+	var p := CPUParticles2D.new()
 	p.texture = _make_circle_texture(16)
+	p.color = color
 	p.global_position = pos
 	p.z_index = 0
-
-	# ─── эмиссия ────────────────────────────
 	p.amount = 128
 	p.lifetime = 0.5
 	p.one_shot = true
 	p.explosiveness = 1.0
 	p.emitting = false
-
+	p.direction = Vector2(0, -1)
+	p.spread = 180
+	p.initial_velocity_min = 60
+	p.initial_velocity_max = 140
+	p.gravity = Vector2(0, 200)
+	p.scale_amount_min = 0.4
+	p.scale_amount_max = 0.8
 	get_tree().current_scene.add_child(p)
 	p.emitting = true
-
-	# ─── автоудаление ───────────────────────
 	p.finished.connect(func():
 		p.queue_free()
 	)
+
+
+# GPU PARTICLES
+
+# func _spawn_merge_particles(pos: Vector2, color: Color):
+# 	var p := GPUParticles2D.new()
+
+# 	# ─── материал ───────────────────────────
+# 	var mat := ParticleProcessMaterial.new()
+# 	mat.color = color
+# 	mat.direction = Vector3(0, -1, 0)
+# 	mat.spread = 180.0
+
+# 	mat.initial_velocity_min = 60.0
+# 	mat.initial_velocity_max = 140.0
+# 	mat.gravity = Vector3(0, 200, 0)
+
+# 	mat.scale_min = 0.4
+# 	mat.scale_max = 0.8
+
+# 	p.process_material = mat
+
+# 	# ─── визуал ─────────────────────────────
+# 	p.texture = _make_circle_texture(16)
+# 	p.global_position = pos
+# 	p.z_index = 0
+
+# 	# ─── эмиссия ────────────────────────────
+# 	p.amount = 128
+# 	p.lifetime = 0.5
+# 	p.one_shot = true
+# 	p.explosiveness = 1.0
+# 	p.emitting = false
+
+# 	get_tree().current_scene.add_child(p)
+# 	p.emitting = true
+
+# 	# ─── автоудаление ───────────────────────
+# 	p.finished.connect(func():
+# 		p.queue_free()
+# 	)

@@ -9,6 +9,7 @@ extends Control
 @onready var play_button = $CanvasLayer/Buttons/PlayButton
 @onready var settings_button = $CanvasLayer/Buttons/SettingsButton
 @onready var leaderboard_button = $CanvasLayer/Buttons/LeaderboardButton
+@onready var nick_button = $CanvasLayer/NicknameButton
 
 
 func _ready():
@@ -16,7 +17,7 @@ func _ready():
 	# play_button.pressed.connect(_on_play_button_pressed)
 	# settings_button.pressed.connect(_on_settings_button_pressed)
 	# leaderboard_button.pressed.connect(_on_leaderboard_button_pressed)
-
+	update_nickname_display()
 	# проверка
 	print("MainMenu ready!")
 
@@ -24,7 +25,7 @@ func _ready():
 func _on_play_button_pressed():
 	if Supabase.player_name == "":
 		var reg = registration_scene.instantiate()
-		add_child(reg)
+		get_tree().root.add_child(reg)
 		reg.nickname_confirmed.connect(_on_classic_pressed)
 	else:
 		_on_classic_pressed()
@@ -41,9 +42,9 @@ func _on_leaderboard_button_pressed() -> void:
 func _on_close_settings_pressed() -> void:
 	settings_popup.close()
 
-func _on_vibration_toggled(toggled_on: bool) -> void:
-	Settings.vibration_enabled = toggled_on
-	Settings.save_settings()
+# func _on_vibration_toggled(toggled_on: bool) -> void:
+# 	Settings.vibration_enabled = toggled_on
+# 	Settings.save_settings()
 
 
 func _on_close_modes_pressed() -> void:
@@ -56,6 +57,33 @@ func _on_classic_pressed() -> void:
 	
 
 
-func _on_aim_toggled(toggled_on: bool) -> void:
-	Settings.aim_enabled = toggled_on
+# func _on_aim_toggled(toggled_on: bool) -> void:
+# 	Settings.aim_enabled = toggled_on
+# 	Settings.save_settings()
+
+
+func update_nickname_display():
+	if Supabase.player_name == "":
+		nick_button.visible = false
+	else:
+		nick_button.visible = true
+		nick_button.text = "Welcome, " + Supabase.player_name
+
+func _on_change_nick_button_pressed():
+	if registration_scene:
+		var popup = registration_scene.instantiate()
+		get_tree().root.add_child(popup)
+		popup.nickname_confirmed.connect(update_nickname_display)
+
+func _on_nickname_button_pressed() -> void:
+	_on_change_nick_button_pressed()
+
+
+
+func _on_aim_2_toggled(is_on: bool) -> void:
+	Settings.aim_enabled = is_on
+	Settings.save_settings()
+
+func _on_vibration_2_toggled(is_on: bool) -> void:
+	Settings.vibration_enabled = is_on
 	Settings.save_settings()

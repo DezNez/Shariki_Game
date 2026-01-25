@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0fx1hwgm2duv"]
+
+[ext_resource type="Script" uid="uid://dqeyjyhdp6ejd" path="res://UI/settings_row.gd" id="1_5irqj"]
+[ext_resource type="FontFile" uid="uid://ccn8nkkjktpb2" path="res://Font/bahnschrift.ttf" id="2_bly5r"]
+[ext_resource type="StyleBox" uid="uid://dfb68p5x5hl7x" path="res://scenes/focus.tres" id="3_v608h"]
+
+[node name="SettingsRow" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+script = ExtResource("1_5irqj")
+
+[node name="SettingName" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8352941, 0.8901961, 0.9882353, 1)
+theme_override_fonts/font = ExtResource("2_bly5r")
+theme_override_font_sizes/font_size = 25
+text = "Настройка"
+
+[node name="Spacer" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Toggle" type="CheckButton" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bly5r")
+theme_override_styles/focus = ExtResource("3_v608h")

@@ -1,47 +1,57 @@
-[gd_scene load_steps=2 format=3 uid="uid://bopfqgomvlisr"]
+[gd_scene load_steps=6 format=3 uid="uid://bopfqgomvlisr"]
 
 [ext_resource type="Script" uid="uid://cc7hypd1ek0j6" path="res://UI/popups/registration_popup.gd" id="1_t25ue"]
+[ext_resource type="StyleBox" uid="uid://dhflx8syuyoya" path="res://scenes/button_blue_pressed.tres" id="2_lultu"]
+[ext_resource type="FontFile" uid="uid://ccn8nkkjktpb2" path="res://Font/bahnschrift.ttf" id="3_7qwp0"]
+[ext_resource type="StyleBox" uid="uid://ux2l8gncw7cq" path="res://scenes/button_blue.tres" id="3_8soe1"]
+[ext_resource type="StyleBox" uid="uid://dfb68p5x5hl7x" path="res://scenes/focus.tres" id="4_7qwp0"]
 
-[node name="RegistrationPopup" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 38.999996
-offset_top = 243.0
-offset_right = 79.0
-offset_bottom = 283.0
-scale = Vector2(0.7, 0.7)
+[node name="CanvasReg" type="CanvasLayer"]
+layer = 99
 script = ExtResource("1_t25ue")
 
-[node name="Background" type="ColorRect" parent="."]
-z_index = 10
+[node name="RegistrationPopup" type="Control" parent="."]
+top_level = true
+z_index = 100
+layout_mode = 3
+anchors_preset = 0
+offset_left = 39.0
+offset_top = 164.0
+offset_right = 79.0
+offset_bottom = 204.00003
+scale = Vector2(0.7, 0.7)
+
+[node name="Background" type="ColorRect" parent="RegistrationPopup"]
 layout_mode = 0
 offset_left = -235.7143
 offset_top = -581.4286
 offset_right = 632.8571
 offset_bottom = 787.5714
-color = Color(0.16862746, 0.16862746, 0.16862746, 0.26666668)
+color = Color(0.14901961, 0.16078432, 0.2, 1)
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="RegistrationPopup"]
 layout_mode = 0
-offset_left = -9.999994
-offset_top = -51.42857
-offset_right = 390.0
-offset_bottom = 198.57143
+offset_top = -91.42857
+offset_right = 400.0
+offset_bottom = 158.57143
+theme_override_styles/panel = ExtResource("2_lultu")
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="Label" type="Label" parent="RegistrationPopup/Panel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -129.0
-offset_top = 11.0
-offset_right = 130.0
-offset_bottom = 46.0
+offset_left = -168.57144
+offset_top = 24.285713
+offset_right = 169.42856
+offset_bottom = 60.285713
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 25
+theme_override_colors/font_color = Color(0.8352941, 0.8901961, 0.9882353, 1)
+theme_override_fonts/font = ExtResource("3_7qwp0")
+theme_override_font_sizes/font_size = 35
 text = "Select your nickname"
 
-[node name="NickInput" type="LineEdit" parent="Panel"]
+[node name="NickInput" type="LineEdit" parent="RegistrationPopup/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -54,8 +64,10 @@ offset_right = 160.0
 offset_bottom = 5.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_7qwp0")
+theme_override_font_sizes/font_size = 23
 
-[node name="SubmitButton" type="Button" parent="Panel"]
+[node name="SubmitButton" type="Button" parent="RegistrationPopup/Panel"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -69,9 +81,13 @@ offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("3_8soe1")
+theme_override_styles/pressed = ExtResource("2_lultu")
+theme_override_styles/hover = ExtResource("3_8soe1")
+theme_override_styles/focus = ExtResource("4_7qwp0")
 text = "Submit"
 
-[node name="ErrorLabel" type="Label" parent="Panel"]
+[node name="ErrorLabel" type="Label" parent="RegistrationPopup/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -87,4 +103,4 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0.4464503, 0.13674936, 0.15046227, 1)
 theme_override_font_sizes/font_size = 25
 
-[connection signal="pressed" from="Panel/SubmitButton" to="." method="_on_submit_button_pressed"]
+[connection signal="pressed" from="RegistrationPopup/Panel/SubmitButton" to="." method="_on_submit_button_pressed"]

@@ -46,7 +46,7 @@ func _input(event):
 	if game_over:
 		return
 	if event is InputEventMouseButton and event.is_pressed():
-		if get_viewport().gui_get_focus_owner() != null:
+		if get_viewport().gui_get_focus_owner():
 			return
 	
 	if event is InputEventMouseButton \
@@ -55,6 +55,18 @@ func _input(event):
 	and mouse_in_game_area:
 		spawn_ball()
 
+
+func _notification(what):
+	match what:
+		NOTIFICATION_APPLICATION_FOCUS_OUT, NOTIFICATION_WM_GO_BACK_REQUEST:
+			_on_menu_button_pressed()
+		NOTIFICATION_APPLICATION_FOCUS_IN:
+			print("In game")
+
+# func pause_game():
+# 	if get_tree().paused:
+# 		return
+# 	get_tree().paused = true
 
 
 func _trigger_game_over():
@@ -77,6 +89,7 @@ func _trigger_game_over():
 		
 	$CanvasLayer/GameOverLabel.visible = true
 	$CanvasLayer/RestartButton.visible = true
+	$CanvasLayer/MainMenuButton.visible = true
 
 
 
@@ -138,15 +151,16 @@ func add_score(level):
 
 func _save_best_score():
 	var cfg := ConfigFile.new()
-	cfg.load(SAVE_PATH)
+	cfg.load_encrypted_pass(SAVE_PATH, Supabase.ENCRYPTION_PASS)
 
 	cfg.set_value("scores", "classic", best_score)
-	cfg.save(SAVE_PATH)
+	cfg.save_encrypted_pass(SAVE_PATH, Supabase.ENCRYPTION_PASS)
 
 
 func _load_best_score():
 	var cfg := ConfigFile.new()
-	if cfg.load(SAVE_PATH) == OK:
+	var err = cfg.load_encrypted_pass(SAVE_PATH, Supabase.ENCRYPTION_PASS)
+	if err == OK:
 		best_score = cfg.get_value("scores", "classic", 0)
 
 
@@ -180,23 +194,23 @@ func _on_exit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://UI/screens/main_menu.tscn")
 
 func _on_settings_button_pressed() -> void:
-	
-	settings_popup.default_scale = 2.0
+	settings_popup.default_scale = 1.7
 	# settings_popup.pivot_offset = settings_popup.size / 2
 	settings_popup.open()
 	pause_popup.close()
 	get_tree().paused = true
 
 #Settings Popup
+
 func _on_close_settings_pressed() -> void:
 	settings_popup.close()
 	pause_popup.open()
 	get_tree().paused = true
 
-func _on_vibration_toggled(toggled_on: bool) -> void:
-	Settings.vibration_enabled = toggled_on
+func _on_aim_toggled(is_on: bool) -> void:
+	Settings.aim_enabled = is_on
 	Settings.save_settings()
 
-func _on_aim_toggled(toggled_on: bool) -> void:
-	Settings.aim_enabled = toggled_on
+func _on_vibration_toggled(is_on: bool) -> void:
+	Settings.vibration_enabled = is_on
 	Settings.save_settings()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ceidv8g3nyysn"]
+[gd_scene load_steps=9 format=3 uid="uid://ceidv8g3nyysn"]
 
 [ext_resource type="Script" uid="uid://omikh7y5xxud" path="res://UI/screens/MainMenu.gd" id="1_iihlf"]
 [ext_resource type="PackedScene" uid="uid://c1w4yduqehcwb" path="res://UI/popups/BasePopup.tscn" id="1_w5p8p"]
@@ -7,6 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://ux2l8gncw7cq" path="res://scenes/button_blue.tres" id="3_klc7o"]
 [ext_resource type="StyleBox" uid="uid://dhflx8syuyoya" path="res://scenes/button_blue_pressed.tres" id="4_hmp1u"]
 [ext_resource type="StyleBox" uid="uid://dfb68p5x5hl7x" path="res://scenes/focus.tres" id="6_hmp1u"]
+[ext_resource type="PackedScene" uid="uid://d0fx1hwgm2duv" path="res://UI/settings_row.tscn" id="8_moeru"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -40,6 +41,7 @@ alignment = 1
 [node name="PlayButton" type="Button" parent="CanvasLayer/Buttons"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.8352941, 0.8901961, 0.9882353, 1)
 theme_override_fonts/font = ExtResource("2_p2iau")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = ExtResource("3_klc7o")
@@ -52,6 +54,7 @@ icon_alignment = 1
 [node name="SettingsButton" type="Button" parent="CanvasLayer/Buttons"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.8352941, 0.8901961, 0.9882353, 1)
 theme_override_fonts/font = ExtResource("2_p2iau")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = ExtResource("3_klc7o")
@@ -64,6 +67,7 @@ icon_alignment = 1
 [node name="LeaderboardButton" type="Button" parent="CanvasLayer/Buttons"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.8352941, 0.8901961, 0.9882353, 1)
 theme_override_fonts/font = ExtResource("2_p2iau")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = ExtResource("3_klc7o")
@@ -137,24 +141,25 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -55.380005
-offset_top = -166.0
-offset_right = 54.619995
-offset_bottom = -135.0
+offset_left = -58.380005
+offset_top = -165.0
+offset_right = 58.619995
+offset_bottom = -132.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_p2iau")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 32
 text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sound" type="CheckBox" parent="CanvasLayer/Popups/SettingsPopup" groups=["config_popup"]]
+[node name="Sound" type="CheckButton" parent="CanvasLayer/Popups/SettingsPopup" groups=["config_popup"]]
+visible = false
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_left = -22.0
 offset_top = -120.0
-offset_right = 76.0
+offset_right = 96.0
 offset_bottom = -120.0
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_p2iau")
@@ -163,13 +168,14 @@ theme_override_styles/focus = ExtResource("6_hmp1u")
 disabled = true
 text = "Sound"
 
-[node name="Music" type="CheckBox" parent="CanvasLayer/Popups/SettingsPopup" groups=["config_popup"]]
+[node name="Music" type="CheckButton" parent="CanvasLayer/Popups/SettingsPopup" groups=["config_popup"]]
+visible = false
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_left = -22.0
 offset_top = -80.0
-offset_right = 71.0
+offset_right = 91.0
 offset_bottom = -80.0
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_p2iau")
@@ -178,13 +184,14 @@ theme_override_styles/focus = ExtResource("6_hmp1u")
 disabled = true
 text = "Music"
 
-[node name="Vibration" type="CheckBox" parent="CanvasLayer/Popups/SettingsPopup" groups=["config_popup"]]
+[node name="Vibration" type="CheckButton" parent="CanvasLayer/Popups/SettingsPopup" groups=["config_popup"]]
+visible = false
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_left = -22.0
 offset_top = -40.0
-offset_right = 107.0
+offset_right = 127.0
 offset_bottom = -40.0
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_p2iau")
@@ -192,12 +199,13 @@ theme_override_font_sizes/font_size = 25
 theme_override_styles/focus = ExtResource("6_hmp1u")
 text = "Vibration"
 
-[node name="Aim" type="CheckBox" parent="CanvasLayer/Popups/SettingsPopup" groups=["config_popup"]]
+[node name="Aim" type="CheckButton" parent="CanvasLayer/Popups/SettingsPopup" groups=["config_popup"]]
+visible = false
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_left = -22.0
-offset_right = 50.0
+offset_right = 70.0
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_p2iau")
 theme_override_font_sizes/font_size = 25
@@ -206,17 +214,17 @@ text = "Aim"
 
 [node name="CloseSettings" type="Button" parent="CanvasLayer/Popups/SettingsPopup" groups=["config_popup"]]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -25.380005
-offset_top = 52.299988
-offset_right = 24.619995
-offset_bottom = 83.29999
+anchor_bottom = 1.0
+offset_left = -57.380005
+offset_top = -9.399994
+offset_right = 58.119995
+offset_bottom = 33.100006
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_p2iau")
 theme_override_font_sizes/font_size = 29
 theme_override_styles/normal = ExtResource("3_klc7o")
@@ -233,14 +241,94 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -97.380005
-offset_top = -212.7
-offset_right = 97.619995
-offset_bottom = 111.3
+offset_left = -124.380005
+offset_top = -203.7
+offset_right = 124.619995
+offset_bottom = 81.3
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("3_klc7o")
+
+[node name="Music2" parent="CanvasLayer/Popups/SettingsPopup" instance=ExtResource("8_moeru")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.380005
+offset_top = -146.7
+offset_right = 75.619995
+offset_bottom = -106.7
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+setting_name = "music"
+label_text = "Music"
+
+[node name="Sound2" parent="CanvasLayer/Popups/SettingsPopup" instance=ExtResource("8_moeru")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.380005
+offset_top = -111.7
+offset_right = 75.619995
+offset_bottom = -71.7
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+label_text = "Sound"
+
+[node name="Vibration2" parent="CanvasLayer/Popups/SettingsPopup" instance=ExtResource("8_moeru")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.880005
+offset_top = -76.7
+offset_right = 75.119995
+offset_bottom = -36.699997
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+setting_name = "vibration"
+label_text = "Vibration"
+
+[node name="Aim2" parent="CanvasLayer/Popups/SettingsPopup" instance=ExtResource("8_moeru")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.880005
+offset_top = -41.699997
+offset_right = 75.119995
+offset_bottom = -1.699997
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+setting_name = "aim"
+label_text = "Aim"
+
+[node name="NicknameButton" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -294.0
+offset_right = 65.0
+offset_bottom = -267.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -262,3 +350,4 @@ metadata/_edit_lock_ = true
 [connection signal="toggled" from="CanvasLayer/Popups/SettingsPopup/Vibration" to="." method="_on_vibration_toggled"]
 [connection signal="toggled" from="CanvasLayer/Popups/SettingsPopup/Aim" to="." method="_on_aim_toggled"]
 [connection signal="pressed" from="CanvasLayer/Popups/SettingsPopup/CloseSettings" to="." method="_on_close_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/NicknameButton" to="." method="_on_nickname_button_pressed"]
